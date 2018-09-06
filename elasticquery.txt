@@ -1,0 +1,72 @@
+{"mappings": {"_doc": {"properties": {"location": {"type": "geo_point"},"title":    { "type": "text"  }}}}}
+curl -XPUT 'http://localhost:9200/geomap' d '{"mappings": {"_doc": {"properties": {"location": {"type": "geo_point"},"title":{ "type": "text"  }}}}}'
+curl -H "Content-Type: application/json;charset=UTF-8" -XPUT localhost:9200/geomap -d {\"mappings\":{\"_doc\":{\"properties\":{\"location\":{\"type\":\"geo_point\"},\"title\":{\"type\":\"text\"}}}}}
+curl -H "Content-Type: application/json" -XPOST http:/localhost:9200/geomap/_doc/1 -d {{\"text\":\"Fryazino\",\"location\":[55,95743746, 38,05412639]},\"title\":\"Fryazino\"}
+
+curl -H "Content-Type: application/json;charset=UTF-8" -XPUT localhost:9200/geo -d {\"mappings\":{\"_doc\":{\"properties\":{\"location\":{\"type\":\"geo_point\"}}}}}
+
+
+
+curl -H "Content-Type: application/json;charset=UTF-8" -XPOST localhost:9200/geo/_doc/1 -d {\"text\":\"Фрязино\",\"location\":{\"lat\":55,95743746,\"lon\":38,05412639}}
+
+curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' -d'
+
+
+"text": "Фрязино",
+                    "location": {
+                        "lat":55.95743746,
+                        "lon": 8.05412639
+						
+"text": "Электросталь",
+                    "location": {
+                        "lat":55.78688434,
+                        "lon": 38.44593903						
+
+"text": "П.Посад",
+                    "location": {
+                        "lat":55.77684492,
+                        "lon": 38.65742585	
+
+						
+"text": "Орехово-Зуево",
+                    "location": {
+                        "lat":55.80309641,
+                        "lon": 38.96641633							
+
+"text": "Черноголовка",
+                    "location": {
+                        "lat":56.01477513,
+                        "lon": 38.3594217								
+		
+
+"text": "Химки",
+                    "location": {
+                        "lat": 55.89252726,
+                        "lon": 37.45991608		
+
+"text": "Коломна",
+                    "location": {
+                        "lat": 55.10775764,
+                        "lon": 38.79255365									
+	
+"text": "Владимир",
+                    "location": {
+                        "lat": 56.14627739,
+                        "lon": 40.38958273		
+
+	
+fetch('http://10.0.3.2:9200/geomap/_search', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "query" : {
+                    "match_all" : {}
+                }
+            })
+        }).then((res)=>{
+            console.log(res)
+        })
+            .catch((err) => {console.log(err)});
